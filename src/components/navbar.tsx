@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 const Navbar: React.FC = () => {
     const pathname = usePathname();
     return (
-        <nav className='fixed top-8 left-16 right-16 z-10 h-16'>
+        <nav className='fixed top-8 left-16 right-16 z-100 h-16'>
             <div className='relative w-full h-full bg-[#d9d9d9] rounded-full flex items-center'>
                 <div className='absolute right-0 top-0 w-1/2 h-full rounded-r-full z-20'>
                     <Image 
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
                     <ul className='flex space-x-72 md:flex-row flex-col justify-center text-md'>
                         <li className={`rounded-4xl py-2 px-4 ${
                         pathname == '/home' ? 'bg-[#46227C]' : 'bg-[#A4A4A4]'} z-30`}>
-                            <Link href='/home' className={`${pathname == '/home' ? 'text-white' : 'text-black'} hover:text-gray-300`}>
+                            <Link href='/home' className={`${pathname == '/home' ? 'text-white' : 'text-black'} hover:text-gray-300 font-primary`}>
                                 home
                             </Link>
                         </li>

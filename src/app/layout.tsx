@@ -30,10 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={pressStart2P.className}
-      >
+    <html lang="en" className={pressStart2P.className}>
+      <body>
         {children}
       </body>
     </html>
