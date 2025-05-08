@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
+import Navbar from "@/components/navbar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,7 +32,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={pressStart2P.className}>
-      <body>
+      <body className="flex flex-col items-center justify-center mt-32 pb-16">
+        <Navbar />
         {children}
       </body>
     </html>

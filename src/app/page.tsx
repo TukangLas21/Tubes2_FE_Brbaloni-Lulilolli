@@ -3,6 +3,6 @@ import Navbar from "../components/navbar";
 
 export default function MyApp() {
   return (
-    <h1>Landing Page</h1>
+    <Navbar />
   );
 }

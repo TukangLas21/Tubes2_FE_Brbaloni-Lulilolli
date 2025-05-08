@@ -8,8 +8,8 @@ import { usePathname } from 'next/navigation';
 const Navbar: React.FC = () => {
     const pathname = usePathname();
     return (
-        <nav className='fixed top-8 left-16 right-16 z-100 h-16'>
-            <div className='relative w-full h-full bg-[#d9d9d9] rounded-full flex items-center'>
+        <nav className='fixed top-4 z-100 h-14 w-19/20'>
+            <div className='relative w-full h-full bg-[#d9d9d9] rounded-full flex items-center opacity-90'>
                 <div className='absolute right-0 top-0 w-1/2 h-full rounded-r-full z-20'>
                     <Image 
                         alt='navbar banner'
