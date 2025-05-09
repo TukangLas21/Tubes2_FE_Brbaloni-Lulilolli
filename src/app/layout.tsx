@@ -36,7 +36,7 @@ export default function RootLayout({
           <Navbar />  
       </header>
       <body className="flex flex-col">
-        <div className="flex flex-col items-center justify-center w-full py-4">
+        <div className="flex flex-col items-center justify-center w-full py-4 grow">
           {children}  
 
         </div>

@@ -11,7 +11,7 @@ import Image from 'next/image';
 const Sidebar: React.FC = () => {
     const [start, setStart] = useState(false);
     return (
-        <div className='fixed h-5/6 w-1/5 left-8 top-22'>
+        <div className='h-full w-full'>
             <div className='flex flex-col bg-[#d9d9d9] rounded-4xl shadow-lg w-full h-full p-4'>
                 <div className='text-center w-full text-xs mb-2'>
                     you're searching for:
