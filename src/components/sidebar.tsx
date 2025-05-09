@@ -46,8 +46,6 @@ const Sidebar: React.FC = () => {
                     </button>
                 </div>
             </div>
-
-
         </div>
     );
 }

@@ -40,9 +40,6 @@ export default function RootLayout({
           {children}  
 
         </div>
-        {/* <div className="flex flex-col items-center justify-center w-full bg-[#E5E5E5] mt-40">
-
-        </div> */}
       </body>
     </html>
   );
