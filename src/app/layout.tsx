@@ -32,9 +32,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={pressStart2P.className}>
-      <body className="flex flex-col items-center justify-center mt-32 pb-16">
-        <Navbar />
-        {children}
+      <header className="flex flex-col justify-center items-center min-h-1/7">
+          <Navbar />  
+      </header>
+      <body className="flex flex-col">
+        <div className="flex flex-col items-center justify-center w-full py-4">
+          {children}  
+
+        </div>
+        {/* <div className="flex flex-col items-center justify-center w-full bg-[#E5E5E5] mt-40">
+
+        </div> */}
       </body>
     </html>
   );

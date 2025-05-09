@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 const Navbar: React.FC = () => {
     const pathname = usePathname();
     return (
-        <nav className='fixed top-4 z-100 h-14 w-19/20'>
+        <nav className='z-100 w-19/20 h-4/5'>
             <div className='relative w-full h-full bg-[#d9d9d9] rounded-full flex items-center opacity-90'>
                 <div className='absolute right-0 top-0 w-1/2 h-full rounded-r-full z-20'>
                     <Image 
