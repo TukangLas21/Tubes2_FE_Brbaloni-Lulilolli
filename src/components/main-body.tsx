@@ -1,16 +1,14 @@
 'use client'
 
 import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { sampleRecipe } from "@/utils/sample-data";
 import RecipeTree from "@/components/recipe-tree";
 
 export default function MainBody() {
     return(
         <div className='flex flex-col w-full h-full bg-[#d9d9d9] rounded-4xl shadow-lg py-6 px-4'>
-            <div className='flex items-center justify-center w-full h-4/5 mx-auto bg-gray-600 rounded-lg mb-4 p-4'>
-                <RecipeTree data={sampleRecipe} />
+            <div id='tree-container' className='flex items-center justify-center w-full h-4/5 mx-auto bg-gray-600 rounded-lg mb-4 p-4'>
+                <RecipeTree recipeData={sampleRecipe} />
             </div>
 
             <div className='flex w-full h-1/5 flex-row'>

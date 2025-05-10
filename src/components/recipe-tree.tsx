@@ -1,55 +1,58 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useEffect, useRef } from 'react';
-import { DataSet, Network } from 'vis-network';
+import { useEffect, useRef } from "react";
+import { Network } from "vis-network/peer/esm/vis-network";
+import { DataSet } from "vis-data/peer/esm/vis-data"
 import "vis-network/styles/vis-network.css";
-import { ConvertData } from '@/utils/convert-data';
+import { ConvertData } from "../utils/convert-data";
+import { group } from "console";
 
-export default function RecipeTree({ data }: { data: any }) {
+export default function RecipeTree({ recipeData }: { recipeData: any }) {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (!containerRef.current || !data) return;
+        if (!containerRef.current || !recipeData) return;
 
-        const { nodes, edges } = ConvertData(data);
+        const { nodes, edges } = ConvertData(recipeData);
 
-        const visNodes = new DataSet(nodes);
-        const visEdges = new DataSet(edges);
+        const visNodes = new DataSet([
+            {id:1, group:'myGroup', label:"Node1"},
+            {id:2, group:'myGroup', label:"Node2"}
+        ]); 
+        const visEdges = new DataSet([
+            { id: 1, from: 1, to: 2}
+        ]);
 
-        const networkData = { nodes: visNodes, edges: visEdges };
+        const data = { nodes: visNodes, edges: visEdges };
         const options = {
-            layout: {
-                hierarchical: {
-                    sortMethod: 'directed',
-                    enabled: true,
-                    levelSeparation: 200,
-                    nodeSpacing: 200,
-                    treeSpacing: 200,
-                    blockShifting: true,
-                    edgeMinimization: true,
-                    parentCentralization: true,
-                    direction: 'UD',
-                },
+        layout: {
+            hierarchical: {
+                levelSeparation: 75,
+                direction: "DU",
+                sortMethod: "directed",
             },
-            physics: {
-                enabled: false,
+        },
+        groups: {
+            myGroup: {
+                shape: "box",
+                color: { background:'red', border: "#000000" },
             },
-            nodes: {
-                shape: 'box',
-                font: { size: 14 },
-            },
-            edges: {
-                smooth: {
-                    enabled: true,
-                    type: 'dynamic',
-                    roundness: 0.5,
-                }
-            },
+        },
+        physics: {
+            enabled: true,
+        },
+        nodes: {
+            font: { size: 14 },
+            margin: { top: 10 },
+        },
+        edges: {
+            smooth: true,
+            arrows: { to: { enabled: true, scaleFactor: 0.5 } },
+        },
         };
 
-        new Network(containerRef.current, networkData, options);
-    }, [data]);
+        new Network(containerRef.current, data, options);
+    }, [recipeData]);
 
-    return <div ref={containerRef} className="w-full h-full bg-white rounded-lg shadow-lg" />;
+    return <div ref={containerRef} style={{ height: "100%", width: "100%" }} />;
 }
