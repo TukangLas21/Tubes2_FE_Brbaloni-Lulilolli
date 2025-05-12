@@ -10,7 +10,7 @@ export function getNodeCount(nodeArr) {
     nodeArr.forEach(node => {
         if (node.label !== "+") {
             count++;
-        }
+        } 
     })
     return count;
 }
@@ -19,11 +19,49 @@ export function ConvertDataNode(nodeArr, target) {
     const nodes = [];
 
     nodeArr.forEach(node => {
-        nodes.push({
-            id: node.id,
-            label: node.label,
-            color: node.label === target ? '#FFD700' : '#70A1FF'
-        })
+        if (node.label === "+") {
+            nodes.push({
+                id: node.id,
+                label: node.label,
+                color: '#857a7a'
+            })
+        } else if (node.label === target) {
+            nodes.push({
+                id: node.id,
+                label: node.label,
+                color: '#FFD700'
+            })
+        } else if (node.label === "Fire") {
+            nodes.push({
+                id: node.id,
+                label: node.label,
+                color: '#f10000'
+            })
+        } else if (node.label === "Water") {
+            nodes.push({
+                id: node.id,
+                label: node.label,
+                color: '#1E90FF'
+            })
+        } else if (node.label === "Earth") {
+            nodes.push({
+                id: node.id,
+                label: node.label,
+                color: '#943e00'
+            })
+        } else if (node.label === "Air") {
+            nodes.push({
+                id: node.id,
+                label: node.label,
+                color: '#c8c6c5'
+            })
+        } else {
+            nodes.push({
+                id: node.id,
+                label: node.label,
+                color: '#70A1FF'
+            })
+        }
     })
     
     return nodes;

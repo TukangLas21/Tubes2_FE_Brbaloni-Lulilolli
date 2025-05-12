@@ -59,8 +59,8 @@ export default function MainPage() {
                 body: JSON.stringify(requestBody)
             });
 
+            // Debug
             console.log("Request body:", requestBody); 
-            
             console.log("Raw response:", response);
 
 
@@ -75,11 +75,15 @@ export default function MainPage() {
                 throw new Error("Error in search");
             }
 
-            setNodes(resultData.nodes);
-            setEdges(resultData.edges);
-            setTargetElement(searchData.element);
-            setNodeCount(getNodeCount(resultData.nodes));
-            setSearchTime(resultData.duration);
+            if (resultData.nodes.length === 0) {
+                throw new Error(resultData.message || "No recipes found");
+            } else {
+                setNodes(resultData.nodes);
+                setEdges(resultData.edges);
+                setTargetElement(searchData.element);
+                setNodeCount(getNodeCount(resultData.nodes));
+                setSearchTime(resultData.duration);
+            }
         } catch (error) {
             setError(error instanceof Error ? error.message : "An unknown error occurred");
             setNodes(null);
@@ -94,7 +98,6 @@ export default function MainPage() {
             <div className="flex flex-col w-1/5 h-full ml-8">
                 <Sidebar 
                     onSearch={handleSearch}
-                    error={error}
                 />
             </div>
             <div className='flex flex-col w-4/5 h-full ml-4 mr-8'>
@@ -105,6 +108,7 @@ export default function MainPage() {
                     isLoading={isLoading}
                     nodeCount={nodeCount}
                     searchTime={searchTime}
+                    error={error}
                 />
             </div>
         </div>

@@ -46,6 +46,7 @@ export default function SearchBar({ value, onChange, options = [] }: SearchBarSp
 
     const handleOptionClick = (option: { id: number; label: string }) => {
         setSearchValue(option.label);
+        onChange(option.label); 
         setIsOpen(false);
         console.log('Selected option:', option.label);
     };

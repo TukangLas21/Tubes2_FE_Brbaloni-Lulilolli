@@ -5,8 +5,6 @@ import { useState } from 'react';
 import SearchBar from '@/components/search-bar';
 import AlgoChoice from '@/components/algo-choice';
 import MultChoice from '@/components/mult-choice';
-import Link from 'next/link';
-import Image from 'next/image';
 
 interface SearchData {
     element: string;
@@ -16,10 +14,9 @@ interface SearchData {
 
 interface SidebarSpecs {
     onSearch: (data: SearchData) => void;
-    error?: string;
 }
 
-const Sidebar: React.FC<SidebarSpecs> = ({ onSearch, error }) => {
+const Sidebar: React.FC<SidebarSpecs> = ({ onSearch }) => {
     
     const [targetElement, setTargetElement] = useState<string>("");
     const [elementOptions, setElementOptions] = useState<{ id: number; label: string }[]>([
@@ -85,9 +82,9 @@ const Sidebar: React.FC<SidebarSpecs> = ({ onSearch, error }) => {
                     />
                 </div>
 
-                <div className='flex w-full h-1/10 justify-center items-center text-xs'>
+                {/* <div className='flex w-full min-h-1/10 justify-center items-center text-xs'>
                     <p className='text-red-500'>{error}</p>
-                </div>
+                </div> */}
 
                 {/* {error && (
                     <div className='flex w-full h-1/10 justify-center items-center text-xs'>
@@ -95,7 +92,7 @@ const Sidebar: React.FC<SidebarSpecs> = ({ onSearch, error }) => {
                     </div>
                 )} */}
 
-                <div className='flex w-full h-1/8 justify-center items-center'>
+                <div className='flex w-full h-1/8 justify-center items-center my-4'>
                     <button 
                         className='bg-white rounded-full py-4 px-2 shadow-xl hover:bg-gray-200 text-xs'
                         onClick={handleSearch}
