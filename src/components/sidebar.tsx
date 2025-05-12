@@ -43,11 +43,12 @@ const Sidebar: React.FC<SidebarSpecs> = ({ onSearch, error }) => {
         console.log('Selected element:', targetElement);
         console.log('Selected algorithm:', selectedAlgo);
         console.log('Selected number of recipes:', selectedNumRecipes);
-        onSearch({
+        const searchData: SearchData = {
             element: targetElement,
             algo: selectedAlgo,
-            numRecipes: multiRecipes ? selectedNumRecipes : 1,
-        });
+            numRecipes: multiRecipes ? selectedNumRecipes : 1
+        };
+        onSearch(searchData);
         setStart(true);
     }
 

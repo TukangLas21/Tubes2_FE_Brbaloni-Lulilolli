@@ -6,7 +6,12 @@ import { DataSet } from "vis-data/peer/esm/vis-data"
 import "vis-network/styles/vis-network.css";
 import { ConvertData } from "../utils/utils";
 
-export default function RecipeTree({ recipeData }: { recipeData: any }, target: string) {
+interface RecipeTreeProps {
+    recipeData: any;
+    target: string | undefined;
+}
+
+export default function RecipeTree({ recipeData, target }: RecipeTreeProps) {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

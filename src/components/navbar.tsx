@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
                     />
                 </div>
 
-                {pathname == '/home' && (
+                {pathname == '/' && (
                     <div className='absolute w-[85px] h-[85px] left-[10%] md:left-[20%] lg:left-[32%]  top-1/2 -translate-y-1/2 z-20'>
                         <Image 
                             src={'/capy-home.png'}
@@ -44,8 +44,8 @@ const Navbar: React.FC = () => {
                 <div className='flex justify-center max-w-screen-xl mx-auto'>
                     <ul className='flex space-x-72 md:flex-row flex-col justify-center text-md'>
                         <li className={`rounded-4xl py-2 px-4 ${
-                        pathname == '/home' ? 'bg-[#46227C]' : 'bg-[#A4A4A4]'} z-30`}>
-                            <Link href='/home' className={`${pathname == '/home' ? 'text-white' : 'text-black'} hover:text-gray-300 font-primary`}>
+                        pathname == '/' ? 'bg-[#46227C]' : 'bg-[#A4A4A4]'} z-30`}>
+                            <Link href='/' className={`${pathname == '/home' ? 'text-white' : 'text-black'} hover:text-gray-300 font-primary`}>
                                 home
                             </Link>
                         </li>
