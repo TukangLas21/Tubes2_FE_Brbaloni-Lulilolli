@@ -4,19 +4,26 @@ import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { Search } from 'lucide-react';
 
-export default function SearchBar() {
+interface SearchBarSpecs {
+    value: string;
+    onChange: (value: string) => void;
+    // options?: Array<{ id: number; label: string }>;
+    options?: { id: number; label: string }[];
+}
+
+export default function SearchBar({ value, onChange, options = [] }: SearchBarSpecs) {
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-    const searchOptions = [
-        { id: 1, label: 'Fire'},
-        { id: 2, label: 'Fire'},
-        { id: 3, label: 'Fire'},
-        { id: 4, label: 'Fire'}
-    ]
+    // const searchOptions = [
+    //     { id: 1, label: 'Fire'},
+    //     { id: 2, label: 'Fire'},
+    //     { id: 3, label: 'Fire'},
+    //     { id: 4, label: 'Fire'}
+    // ]
 
-    const filteredOptions = searchOptions.filter(option => 
+    const filteredOptions = options.filter(option => 
         option.label.toLowerCase().includes(searchValue.toLowerCase())
     );
 
@@ -32,6 +39,10 @@ export default function SearchBar() {
             document.removeEventListener('mousedown', handleClickOutside);
         }
     }, []);
+
+    useEffect(() => {
+        setSearchValue(value);
+    }, [value]);
 
     const handleOptionClick = (option: { id: number; label: string }) => {
         setSearchValue(option.label);
@@ -51,7 +62,11 @@ export default function SearchBar() {
                     focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs"
                     placeholder="search..."
                     value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={(e) => {
+                        const newValue = e.target.value;
+                        setSearchValue(newValue); // Update local state
+                        onChange(newValue); // Pass the value to the parent component
+                    }}
                     onClick={() => setIsOpen(true)}
                 />
             </div>

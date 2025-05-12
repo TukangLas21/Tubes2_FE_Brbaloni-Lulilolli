@@ -3,7 +3,11 @@
 import React from 'react';
 import { useState } from 'react';
 
-export default function AlgoChoice() {
+interface AlgoChoiceSpecs {
+    onAlgoSelect: (algo: string) => void;
+}
+
+export default function AlgoChoice({ onAlgoSelect }: AlgoChoiceSpecs) {
     const [selectedAlgo, setSelectedAlgo] = useState<string | null>(null);
 
     const algorithms = [
@@ -14,6 +18,7 @@ export default function AlgoChoice() {
 
     const handleAlgoClick = (algo: string) => {
         setSelectedAlgo(algo);
+        onAlgoSelect(algo);
         console.log('Selected algorithm:', algo);
     };
 

@@ -8,8 +8,49 @@ import MultChoice from '@/components/mult-choice';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Sidebar: React.FC = () => {
+interface SearchData {
+    element: string;
+    algo: string;
+    numRecipes: number;
+}
+
+interface SidebarSpecs {
+    onSearch: (data: SearchData) => void;
+    error?: string;
+}
+
+const Sidebar: React.FC<SidebarSpecs> = ({ onSearch, error }) => {
+    
+    const [targetElement, setTargetElement] = useState<string>("");
+    const [elementOptions, setElementOptions] = useState<{ id: number; label: string }[]>([
+        { id: 1, label: 'Fire' },
+        { id: 2, label: 'Water' },
+        { id: 3, label: 'Earth' },
+        { id: 4, label: 'Air' },
+    ]);
+    const [selectedAlgo, setSelectedAlgo] = useState<string>("");
+    const [multiRecipes, setMultiRecipes] = useState(false);
+    const [selectedNumRecipes, setSelectedNumRecipes] = useState(1);
     const [start, setStart] = useState(false);
+
+    const handleSearchChange = (value: string) => {
+        setTargetElement(value);
+        console.log('Search value:', value);
+    }
+
+    const handleSearch = () => {
+        console.log('Search button clicked');
+        console.log('Selected element:', targetElement);
+        console.log('Selected algorithm:', selectedAlgo);
+        console.log('Selected number of recipes:', selectedNumRecipes);
+        onSearch({
+            element: targetElement,
+            algo: selectedAlgo,
+            numRecipes: multiRecipes ? selectedNumRecipes : 1,
+        });
+        setStart(true);
+    }
+
     return (
         <div className='h-full w-full'>
             <div className='flex flex-col bg-[#d9d9d9] rounded-4xl shadow-lg w-full h-full p-4'>
@@ -22,25 +63,41 @@ const Sidebar: React.FC = () => {
                 </div>
 
                 <div className='flex w-full mb-2 justify-center mx-auto'>
-                    <SearchBar />
+                    <SearchBar 
+                        value={targetElement}
+                        onChange={handleSearchChange}
+                        options={elementOptions}
+                    />
                 </div>
 
                 <div className='flex w-full h-1/6 justify-center'>
-                    <AlgoChoice />
+                    <AlgoChoice 
+                        onAlgoSelect={setSelectedAlgo}
+                    />
                 </div>
 
                 <div className='flex w-full h-1/6 justify-center mb-4'>
-                    <MultChoice />
+                    <MultChoice 
+                        onToggle={setMultiRecipes}
+                        onNumChoicesChange={(num) => setSelectedNumRecipes(num ?? 1)}
+                        initialEnabled={false}
+                    />
                 </div>
 
                 <div className='flex w-full h-1/10 justify-center items-center text-xs'>
-                    <p className='text-red-500'>error placeholder</p>
+                    <p className='text-red-500'>{error}</p>
                 </div>
+
+                {/* {error && (
+                    <div className='flex w-full h-1/10 justify-center items-center text-xs'>
+                        <p className='text-red-500'>{error}</p>
+                    </div>
+                )} */}
 
                 <div className='flex w-full h-1/8 justify-center items-center'>
                     <button 
                         className='bg-white rounded-full py-4 px-2 shadow-xl hover:bg-gray-200 text-xs'
-                        onClick={() => setStart(true)}
+                        onClick={handleSearch}
                     >
                         start searching!
                     </button>
