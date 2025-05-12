@@ -5,16 +5,26 @@ export function ConvertData(recipeTree, target) {
     }
 }
 
+export function getNodeCount(nodeArr) {
+    let count = 0;
+    nodeArr.forEach(node => {
+        if (node.label !== "+") {
+            count++;
+        }
+    })
+    return count;
+}
+
 export function ConvertDataNode(nodeArr, target) {
     const nodes = [];
 
-    for (let i = 0; i < nodeArr.length; i++) {
+    nodeArr.forEach(node => {
         nodes.push({
-            id: nodeArr[i].id,
-            label: nodeArr[i].name,
-            color: nodeArr[i].color === target ? "#FFD700" : "#70a1ff"
+            id: node.id,
+            label: node.label,
+            color: node.label === target ? '#FFD700' : '#70A1FF'
         })
-    }
+    })
     
     return nodes;
 }

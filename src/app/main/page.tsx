@@ -3,6 +3,7 @@
 import Sidebar from "@/components/sidebar";
 import MainBody from "@/components/main-body";
 import { useState } from "react";
+import { getNodeCount } from "@/utils/utils";
 
 interface SearchData {
     element: string;
@@ -77,7 +78,7 @@ export default function MainPage() {
             setNodes(resultData.nodes);
             setEdges(resultData.edges);
             setTargetElement(searchData.element);
-            setNodeCount(resultData.totalNodes);
+            setNodeCount(getNodeCount(resultData.nodes));
             setSearchTime(resultData.duration);
         } catch (error) {
             setError(error instanceof Error ? error.message : "An unknown error occurred");

@@ -18,7 +18,7 @@ export default function RecipeTree({ nodesArr, edgesArr, target }: RecipeTreePro
     useEffect(() => {
         if (!containerRef.current || !nodesArr || !edgesArr) return;
 
-        const nodes = ConvertDataNode(nodesArr);
+        const nodes = ConvertDataNode(nodesArr, target);
         const edges = ConvertDataEdge(edgesArr);
 
         const visNodes = new DataSet(nodes);
