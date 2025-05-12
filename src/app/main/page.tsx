@@ -50,17 +50,22 @@ export default function MainPage() {
                 recipes: searchData.numRecipes
             };
 
-            const response = await fetch(`http://localhost:8080/api/v1/search`, {
+            const response = await fetch(`http://localhost:8080/api/v1/search?target=${searchData.element.trim()}&algo=${searchData.algo}&totalrecipe=${searchData.numRecipes}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(requestBody)
             });
+
+            console.log("Request body:", requestBody); 
             
+            console.log("Raw response:", response);
+
+
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.message || "Error in fetching data");
+                throw new Error(errorData.error || "Error in fetching data");
             }
             
             const resultData: ApiResponse = await response.json();

@@ -11,9 +11,9 @@ export default function AlgoChoice({ onAlgoSelect }: AlgoChoiceSpecs) {
     const [selectedAlgo, setSelectedAlgo] = useState<string | null>(null);
 
     const algorithms = [
-        { id: 1, label: 'bfs' },
-        { id: 2, label: 'dfs' },
-        { id: 3, label: 'bi' },
+        { id: 1, label: 'BFS' },
+        { id: 2, label: 'DFS' },
+        { id: 3, label: 'BI' },
     ];
 
     const handleAlgoClick = (algo: string) => {
