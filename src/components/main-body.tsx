@@ -7,25 +7,26 @@ import { useState } from "react";
 import {fetchData } from "@/utils/utils";
 
 interface MainBodyProps {
-    data: any;
+    nodes: any;
+    edges: any;
     targetElement: string;
     isLoading: boolean;
     nodeCount: number;
-    searchTime: number;
+    searchTime: string;
 }
 
-export default function MainBody({ data, targetElement, isLoading, nodeCount, searchTime }: MainBodyProps) {
+export default function MainBody({ nodes, edges, targetElement, isLoading, nodeCount, searchTime }: MainBodyProps) {
     const [recipeData, setRecipeData] = useState<any>(null);
     
     return(
         <div className='flex flex-col w-full h-full bg-[#d9d9d9] rounded-4xl shadow-lg py-6 px-4'>
             <div id='tree-container' className='flex items-center justify-center w-full h-4/5 mx-auto bg-gray-600 rounded-lg mb-4 p-4'>
-                {/* <RecipeTree recipeData={sampleRecipe} /> */}
                 {isLoading ? (
                     <div className='text-white text-xs'>Loading...</div>
                 ) : (
                     <RecipeTree 
-                        recipeData={data} 
+                        nodesArr={nodes}
+                        edgesArr={edges}
                         target={targetElement} 
                     />
                 )}
@@ -40,7 +41,7 @@ export default function MainBody({ data, targetElement, isLoading, nodeCount, se
                         <div className='h-4/5 border-l border-black bg-green-500'></div>
 
                         <div className='flex w-2/5 h-full justify-center items-center text-center text-s p-2'>
-                            {searchTime} ms
+                            {searchTime}
                         </div>
                     </div>
                 </div>

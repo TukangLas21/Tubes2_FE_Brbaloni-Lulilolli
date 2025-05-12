@@ -11,19 +11,23 @@ interface SearchData {
 }
 
 interface ApiResponse {
-    nodeCount: number;
-    searchTime: number;
-    tree: any;
-    success: boolean;
+    totalNodes: number;
+    duration: string;
+    edges: any;
+    nodes: any;
+    message: string;
+    totalRecipes: number;
+    target: string;
 }
 
 export default function MainPage() {
     const [targetElement, setTargetElement] = useState<string>("");
     const [error, setError] = useState<string | undefined>(undefined);
-    const [data, setData] = useState<any>(null);
+    const [nodes, setNodes] = useState<any>(null);
+    const [edges, setEdges] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [nodeCount, setNodeCount] = useState<number>(0);
-    const [searchTime, setSearchTime] = useState<number>(0);
+    const [searchTime, setSearchTime] = useState<string>("");
 
     const handleSearch = async (searchData: SearchData) => {
         setError(undefined);
@@ -61,17 +65,19 @@ export default function MainPage() {
             
             const resultData: ApiResponse = await response.json();
             
-            if (!resultData.success) {
-                throw new Error("Search failed");
+            if (!resultData) {
+                throw new Error("Error in search");
             }
 
-            setData(resultData.tree);
+            setNodes(resultData.nodes);
+            setEdges(resultData.edges);
             setTargetElement(searchData.element);
-            setNodeCount(resultData.nodeCount);
-            setSearchTime(resultData.searchTime);
+            setNodeCount(resultData.totalNodes);
+            setSearchTime(resultData.duration);
         } catch (error) {
             setError(error instanceof Error ? error.message : "An unknown error occurred");
-            setData(null);
+            setNodes(null);
+            setEdges(null);
         } finally {
             setIsLoading(false);
         }
@@ -87,7 +93,8 @@ export default function MainPage() {
             </div>
             <div className='flex flex-col w-4/5 h-full ml-4 mr-8'>
                 <MainBody 
-                    data={data} 
+                    nodes={nodes}
+                    edges={edges}
                     targetElement={targetElement}
                     isLoading={isLoading}
                     nodeCount={nodeCount}

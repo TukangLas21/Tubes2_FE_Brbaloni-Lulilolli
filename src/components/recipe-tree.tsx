@@ -4,20 +4,22 @@ import { useEffect, useRef } from "react";
 import { Network } from "vis-network/peer/esm/vis-network";
 import { DataSet } from "vis-data/peer/esm/vis-data"
 import "vis-network/styles/vis-network.css";
-import { ConvertData } from "../utils/utils";
+import { ConvertDataNode, ConvertDataEdge } from "../utils/utils";
 
 interface RecipeTreeProps {
-    recipeData: any;
+    nodesArr: any;
+    edgesArr: any;
     target: string | undefined;
 }
 
-export default function RecipeTree({ recipeData, target }: RecipeTreeProps) {
+export default function RecipeTree({ nodesArr, edgesArr, target }: RecipeTreeProps) {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (!containerRef.current || !recipeData) return;
+        if (!containerRef.current || !nodesArr || !edgesArr) return;
 
-        const { nodes, edges } = ConvertData(recipeData, target);
+        const nodes = ConvertDataNode(nodesArr);
+        const edges = ConvertDataEdge(edgesArr);
 
         const visNodes = new DataSet(nodes);
         const visEdges = new DataSet(edges);
@@ -51,7 +53,7 @@ export default function RecipeTree({ recipeData, target }: RecipeTreeProps) {
         };
 
         new Network(containerRef.current, data, options);
-    }, [recipeData]);
+    }, [nodesArr, edgesArr]);
 
     return <div ref={containerRef} style={{ height: "100%", width: "100%" }} />;
 }
