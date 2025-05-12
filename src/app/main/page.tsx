@@ -50,8 +50,8 @@ export default function MainPage() {
                 algorithm: searchData.algo,
                 recipes: searchData.numRecipes
             };
-
-            const response = await fetch(`http://localhost:8080/api/v1/search?target=${searchData.element.trim()}&algo=${searchData.algo}&totalrecipe=${searchData.numRecipes}`, {
+            
+            const response = await fetch(`https://tubes2bebrbaloni-lulilolli-production.up.railway.app/api/v1/search?target=${searchData.element.trim()}&algo=${searchData.algo}&totalrecipe=${searchData.numRecipes}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
