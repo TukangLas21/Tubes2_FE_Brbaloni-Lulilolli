@@ -7,8 +7,7 @@ import { Search } from 'lucide-react';
 interface SearchBarSpecs {
     value: string;
     onChange: (value: string) => void;
-    // options?: Array<{ id: number; label: string }>;
-    options?: { id: number; label: string }[];
+    options?: { name: string; image: string }[];
 }
 
 export default function SearchBar({ value, onChange, options = [] }: SearchBarSpecs) {
@@ -16,15 +15,8 @@ export default function SearchBar({ value, onChange, options = [] }: SearchBarSp
     const [searchValue, setSearchValue] = useState('');
     const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-    // const searchOptions = [
-    //     { id: 1, label: 'Fire'},
-    //     { id: 2, label: 'Fire'},
-    //     { id: 3, label: 'Fire'},
-    //     { id: 4, label: 'Fire'}
-    // ]
-
     const filteredOptions = options.filter(option => 
-        option.label.toLowerCase().includes(searchValue.toLowerCase())
+        option.name.toLowerCase().includes(searchValue.toLowerCase())
     );
 
     useEffect(() => {
@@ -44,11 +36,11 @@ export default function SearchBar({ value, onChange, options = [] }: SearchBarSp
         setSearchValue(value);
     }, [value]);
 
-    const handleOptionClick = (option: { id: number; label: string }) => {
-        setSearchValue(option.label);
-        onChange(option.label); 
+    const handleOptionClick = (option: { name: string; image: string }) => {
+        setSearchValue(option.name);
+        onChange(option.name); 
         setIsOpen(false);
-        console.log('Selected option:', option.label);
+        console.log('Selected option:', option.name);
     };
 
     return (
@@ -73,22 +65,24 @@ export default function SearchBar({ value, onChange, options = [] }: SearchBarSp
             </div>
             
             {isOpen && (
-                <div className="absolute mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 z-30">
-                {filteredOptions.length > 0 ? (
-                    <ul className="py-1">
-                        {filteredOptions.map((option) => (
-                            <li 
-                                key={option.id}
-                                className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-xs"
-                                onClick={() => handleOptionClick(option)}
-                            >
-                            {option.label}
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <div className="px-4 py-2 text-gray-500">No results found</div>
-                )}
+                <div
+                    className="absolute mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 z-30 max-h-48 overflow-y-auto"
+                >
+                    {filteredOptions.length > 0 ? (
+                        <ul className="py-1">
+                            {filteredOptions.map((option) => (
+                                <li
+                                    key={option.name}
+                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-xs"
+                                    onClick={() => handleOptionClick(option)}
+                                >
+                                    {option.name}
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <div className="px-4 py-2 text-gray-500">No results found</div>
+                    )}
                 </div>
             )}
         </div>

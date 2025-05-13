@@ -51,7 +51,8 @@ export default function MainPage() {
                 recipes: searchData.numRecipes
             };
             
-            const response = await fetch(`https://tubes2bebrbaloni-lulilolli-production.up.railway.app/api/v1/search?target=${searchData.element.trim()}&algo=${searchData.algo}&totalrecipe=${searchData.numRecipes}`, {
+            // const response = await fetch(`https://tubes2bebrbaloni-lulilolli-production.up.railway.app/api/v1/search?target=${searchData.element.trim()}&algo=${searchData.algo}&totalrecipe=${searchData.numRecipes}`, {
+            const response = await fetch(`http://localhost:8080/api/v1/search?target=${searchData.element.trim()}&algo=${searchData.algo}&totalrecipe=${searchData.numRecipes}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ export default function MainPage() {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error || "Error in fetching data");
+                throw new Error(errorData.message || "Error in fetching data");
             }
             
             const resultData: ApiResponse = await response.json();

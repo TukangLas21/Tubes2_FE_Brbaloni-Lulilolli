@@ -1,10 +1,11 @@
 'use client'
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import SearchBar from '@/components/search-bar';
 import AlgoChoice from '@/components/algo-choice';
 import MultChoice from '@/components/mult-choice';
+import Image from 'next/image';
 
 interface SearchData {
     element: string;
@@ -16,19 +17,45 @@ interface SidebarSpecs {
     onSearch: (data: SearchData) => void;
 }
 
+interface ElementOption {
+    name: string;
+    image: string;
+}
+
 const Sidebar: React.FC<SidebarSpecs> = ({ onSearch }) => {
     
     const [targetElement, setTargetElement] = useState<string>("");
-    const [elementOptions, setElementOptions] = useState<{ id: number; label: string }[]>([
-        { id: 1, label: 'Fire' },
-        { id: 2, label: 'Water' },
-        { id: 3, label: 'Earth' },
-        { id: 4, label: 'Air' },
-    ]);
+    const [elementOptions, setElementOptions] = useState<ElementOption[]>([]);
     const [selectedAlgo, setSelectedAlgo] = useState<string>("");
     const [multiRecipes, setMultiRecipes] = useState(false);
     const [selectedNumRecipes, setSelectedNumRecipes] = useState(1);
     const [start, setStart] = useState(false);
+
+    useEffect(() => {
+        const fetchElementOptions = async () => {
+            try {
+                // const response = await fetch('https://tubes2bebrbaloni-lulilolli-production.up.railway.app/api/v1/images');
+                const response = await fetch('http://localhost:8080/api/v1/images');
+                if (!response.ok) {
+                    console.log('Response not ok:', response);
+                    throw new Error('Failed to fetch element options');
+                }
+                const data = await response.json();
+                console.log('Fetched element options:', data);
+
+                const elementOptions = data.map((element: any) => ({
+                    name: element.name,
+                    image: element.image
+                }));
+
+                setElementOptions(elementOptions);
+            } catch (error) {
+                console.error('Error fetching element options:', error);
+            } 
+        };
+
+        fetchElementOptions();
+    }, []);
 
     const handleSearchChange = (value: string) => {
         setTargetElement(value);
@@ -57,7 +84,20 @@ const Sidebar: React.FC<SidebarSpecs> = ({ onSearch }) => {
                 </div>
 
                 <div className='flex items-center justify-center w-full h-1/5 mx-auto bg-gray-600 rounded-lg mb-4'>
-                    <p className='text-white text-xs'>placeholder</p>
+                    {
+                        targetElement && (
+                            <div className='flex items-center justify-center w-full h-full'>
+                                {elementOptions.find(option => option.name === targetElement)?.image && (
+                                    <Image 
+                                        src={elementOptions.find(option => option.name === targetElement)?.image || '/'}
+                                        alt='element'
+                                        width={80}
+                                        height={80}
+                                    />
+                                )}
+                            </div>
+                        )
+                    }
                 </div>
 
                 <div className='flex w-full mb-2 justify-center mx-auto'>
