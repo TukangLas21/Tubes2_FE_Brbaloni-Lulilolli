@@ -80,7 +80,7 @@ const Sidebar: React.FC<SidebarSpecs> = ({ onSearch }) => {
         <div className='h-full w-full'>
             <div className='flex flex-col bg-[#d9d9d9] rounded-4xl shadow-lg w-full h-full p-4'>
                 <div className='text-center w-full text-xs mb-2'>
-                    you&apos;re searching for:
+                    you're searching for:
                 </div>
 
                 <div className='flex items-center justify-center w-full h-1/5 mx-auto bg-gray-600 rounded-lg mb-4'>
