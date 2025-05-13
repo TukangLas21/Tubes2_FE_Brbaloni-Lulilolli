@@ -13,7 +13,6 @@ export default function AlgoChoice({ onAlgoSelect }: AlgoChoiceSpecs) {
     const algorithms = [
         { id: 1, label: 'BFS' },
         { id: 2, label: 'DFS' },
-        { id: 3, label: 'BI' },
     ];
 
     const handleAlgoClick = (algo: string) => {
