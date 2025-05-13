@@ -34,8 +34,8 @@ const Sidebar: React.FC<SidebarSpecs> = ({ onSearch }) => {
     useEffect(() => {
         const fetchElementOptions = async () => {
             try {
-                // const response = await fetch('https://tubes2bebrbaloni-lulilolli-production.up.railway.app/api/v1/images');
-                const response = await fetch('http://localhost:8080/api/v1/images');
+                const response = await fetch('https://tubes2bebrbaloni-lulilolli-production.up.railway.app/api/v1/images');
+                // const response = await fetch('http://localhost:8080/api/v1/images');
                 if (!response.ok) {
                     console.log('Response not ok:', response);
                     throw new Error('Failed to fetch element options');
