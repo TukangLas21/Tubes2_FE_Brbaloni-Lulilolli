@@ -17,6 +17,7 @@ Little Alchemy 2 merupakan permainan berbasis logika dan eksplorasi melalui peng
 Sebelum memulai proyek, pastikan bahwa Anda sudah memiliki:
 - [Golang](https://go.dev/)
 - [Node.js](https://nodejs.org/en) versi 20 atau lebih
+- [GNU Make](https://www.gnu.org/software/make/)
 
 Sebagai alternatif, Anda dapat menginstall program menggunakan Dockerfile yang tersedia pada kedua repositori. Pastikan Anda memiliki [Docker Desktop](https://www.docker.com/products/docker-desktop/) dan silakan menjalankan perintah di bawah dan menyesuaikannya untuk kedua repositori:
 ```shell
@@ -43,7 +44,7 @@ npm run dev
 Untuk repositori backend:
 ```shell
 git clone https://github.com/angkaberapa/Tubes2_BE_BrBaloni-Lulilolli.git
-cd Tubes2_BE_Brbaloni-Lulilolli
+cd Tubes2_BE_BrBaloni-Lulilolli
 ```
 Untuk menjalankan program backend secara lokal, silakan memasukkan perintah berikut.
 ```shell
