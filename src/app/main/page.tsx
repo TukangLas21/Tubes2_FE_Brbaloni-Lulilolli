@@ -66,8 +66,7 @@ export default function MainPage() {
 
 
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || "Error in fetching data");
+                throw new Error("Error in fetching data");
             }
             
             const resultData: ApiResponse = await response.json();

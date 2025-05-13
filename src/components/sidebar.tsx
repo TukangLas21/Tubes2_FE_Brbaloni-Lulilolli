@@ -80,20 +80,24 @@ const Sidebar: React.FC<SidebarSpecs> = ({ onSearch }) => {
         <div className='h-full w-full'>
             <div className='flex flex-col bg-[#d9d9d9] rounded-4xl shadow-lg w-full h-full p-4'>
                 <div className='text-center w-full text-xs mb-2'>
-                    you&aposre searching for:
+                    you&apos;re searching for:
                 </div>
 
                 <div className='flex items-center justify-center w-full h-1/5 mx-auto bg-gray-600 rounded-lg mb-4'>
                     {
                         targetElement && (
                             <div className='flex items-center justify-center w-full h-full'>
-                                {elementOptions.find(option => option.name === targetElement)?.image && (
+                                {elementOptions.find(option => option.name === targetElement)?.image ? (
                                     <Image 
                                         src={elementOptions.find(option => option.name === targetElement)?.image || '/'}
                                         alt='element'
                                         width={80}
                                         height={80}
                                     />
+                                ) : (
+                                    <div className='text-red-500 text-xs text-center'>
+                                        no element
+                                    </div>
                                 )}
                             </div>
                         )
