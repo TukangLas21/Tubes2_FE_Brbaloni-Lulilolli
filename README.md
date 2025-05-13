@@ -1,7 +1,7 @@
 # Tugas Besar 2 - IF2211 Strategi Algoritma
 > Pemanfaatan Algoritma BFS dan DFS dalam Pencarian Recipe pada Permainan Little Alchemy 2
 
-## Kelompok 46 - Brbaloni Lulilolli
+## Kelompok 46 - BrBaloni Lulilolli
 ![foto kelompok](doc/foto.jpg)
 | NIM | Nama |
 | :---: | :---: |
@@ -18,7 +18,7 @@ Sebelum memulai proyek, pastikan bahwa Anda sudah memiliki:
 - [Golang](https://go.dev/)
 - [Node.js](https://nodejs.org/en) versi 20 atau lebih
 
-Sebagai alternatif, Anda dapat menginstall program menggunakan Dockerfile yang tersedia pada kedua repositori. Silakan menjalankan perintah di bawah dan menyesuaikannya untuk kedua repositori:
+Sebagai alternatif, Anda dapat menginstall program menggunakan Dockerfile yang tersedia pada kedua repositori. Pastikan Anda memiliki [Docker Desktop](https://www.docker.com/products/docker-desktop/) dan silakan menjalankan perintah di bawah dan menyesuaikannya untuk kedua repositori:
 ```shell
 docker build -t {nama_root_directory}
 ```
