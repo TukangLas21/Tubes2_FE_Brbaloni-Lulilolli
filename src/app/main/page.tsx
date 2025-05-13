@@ -64,7 +64,6 @@ export default function MainPage() {
             console.log("Request body:", requestBody); 
             console.log("Raw response:", response);
 
-
             if (!response.ok) {
                 throw new Error("Error in fetching data");
             }
@@ -80,7 +79,7 @@ export default function MainPage() {
             } else {
                 setNodes(resultData.nodes);
                 setEdges(resultData.edges);
-                setTargetElement(searchData.element);
+                setTargetElement(resultData.target);
                 setNodeCount(getNodeCount(resultData.nodes));
                 setSearchTime(resultData.duration);
             }

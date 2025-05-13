@@ -35,7 +35,6 @@ const Sidebar: React.FC<SidebarSpecs> = ({ onSearch }) => {
         const fetchElementOptions = async () => {
             try {
                 const response = await fetch('https://tubes2bebrbaloni-lulilolli-production.up.railway.app/api/v1/images');
-                // const response = await fetch('http://localhost:8080/api/v1/images');
                 if (!response.ok) {
                     console.log('Response not ok:', response);
                     throw new Error('Failed to fetch element options');
@@ -63,6 +62,7 @@ const Sidebar: React.FC<SidebarSpecs> = ({ onSearch }) => {
     }
 
     const handleSearch = () => {
+        // debug
         console.log('Search button clicked');
         console.log('Selected element:', targetElement);
         console.log('Selected algorithm:', selectedAlgo);
@@ -87,9 +87,9 @@ const Sidebar: React.FC<SidebarSpecs> = ({ onSearch }) => {
                     {
                         targetElement && (
                             <div className='flex items-center justify-center w-full h-full'>
-                                {elementOptions.find(option => option.name === targetElement)?.image ? (
+                                {elementOptions.find(option => option.name === targetElement.trim())?.image ? (
                                     <Image 
-                                        src={elementOptions.find(option => option.name === targetElement)?.image || '/'}
+                                        src={elementOptions.find(option => option.name === targetElement.trim())?.image || '/'}
                                         alt='element'
                                         width={80}
                                         height={80}

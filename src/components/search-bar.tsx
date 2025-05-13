@@ -16,7 +16,7 @@ export default function SearchBar({ value, onChange, options = [] }: SearchBarSp
     const dropdownRef = useRef<HTMLDivElement | null>(null);
 
     const filteredOptions = options.filter(option => 
-        option.name.toLowerCase().includes(searchValue.toLowerCase())
+        option.name.toLowerCase().includes(searchValue.toLowerCase().trim())
     );
 
     useEffect(() => {
