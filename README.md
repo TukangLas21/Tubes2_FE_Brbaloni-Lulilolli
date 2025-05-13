@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tugas Besar 2 - IF2211 Strategi Algoritma
+> Pemanfaatan Algoritma BFS dan DFS dalam Pencarian Recipe pada Permainan Little Alchemy 2
 
-## Getting Started
+## Kelompok 46 - Brbaloni Lulilolli
+![foto kelompok](doc/foto.jpg)
+| NIM | Nama |
+| :---: | :---: |
+| 13523031 | Rafen Max Alessandro |
+| 13523102 | Michael Alexander Angkawijaya |
+| 13523112 | Aria Judhistira |
 
-First, run the development server:
+## Deskripsi Singkat
+Little Alchemy 2 merupakan permainan berbasis logika dan eksplorasi melalui penggabungan unsur-unsur dasar untuk membentuk objek atau konsep baru. Pemain diminta untuk menemukan sebanyak mungkin elemen baru melalui kombinasi-kombinasi unik penggabungan dua elemen, diawali dengan empat elemen dasar: air, tanah, api, dan udara. Program ini dirancang menggunakan dua tipe pendekatan algoritma, Breadth First Search (BFS) dan Depth First Search (DFS), untuk membentuk algoritma dalam mencari jalur kombinasi / resep elemen dasar pembentuk elemen masukan pengguna. BFS adalah algoritma traversal graf yang menjelajahi graf berdasarkan tingkatannya, mengunjungi semua simpul pada satu kedalaman sebelum melanjutkan ke kedalaman berikutnya. DFS adalah algoritma traversal graf yang menjelajahi graf dengan menelusuri jalur sedalam mungkin terlebih dahulu, sebelum akhirnya menjelajahi cabang lainnya jika jalur sebelumnya tidak memberikan hasil.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Dependencies
+
+Sebelum memulai proyek, pastikan bahwa Anda sudah memiliki:
+- [Golang](https://go.dev/)
+- [Node.js](https://nodejs.org/en) versi 20 atau lebih
+
+Sebagai alternatif, Anda dapat menginstall program menggunakan Dockerfile yang tersedia pada kedua repositori. Silakan menjalankan perintah di bawah dan menyesuaikannya untuk kedua repositori:
+```shell
+docker build -t {nama_root_directory}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Instalasi / Memulai
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Untuk memulai proyek ini, silakan melakukan langkah-langkah berikut untuk masing-masing repositori frontend dan backend. 
+<br>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Repositori Frontend
+Untuk repositori frontend:
+```shell
+git clone https://github.com/TukangLas21/Tubes2_FE_Brbaloni-Lulilolli.git
+cd Tubes2_FE_Brbaloni-Lulilolli
+npm install
+```
+Untuk menjalankan aplikasi frontend secara lokal, silakan memasukkan perintah berikut.
+```shell
+npm run dev
+```
+### Repositori Backend
+Untuk repositori backend:
+```shell
+git clone https://github.com/angkaberapa/Tubes2_BE_BrBaloni-Lulilolli.git
+cd Tubes2_BE_Brbaloni-Lulilolli
+```
+Untuk menjalankan program backend secara lokal, silakan memasukkan perintah berikut.
+```shell
+make run
+```
 
-## Learn More
+## Aplikasi Deployment
+Jika Anda ingin mengunjungi aplikasi web yang sudah di-deploy, silakan mengklik [link](https://tubes2-fe-brbaloni-lulilolli.vercel.app/) ini.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tautan Lainnya
+Jika Anda tertarik, Anda dapat menonton video tentang proyek ini dengan mengklik [link](https://youtu.be/Klx4UGEPmcg?si=T1dQDLA9cmZi8MFc) ini.
